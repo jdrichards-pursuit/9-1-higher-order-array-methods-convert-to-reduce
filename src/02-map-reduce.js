@@ -5,7 +5,7 @@
 
   Keep in mind that your functions must still have and use a parameter for accepting all songs.
 */
-const exampleSongData = require('../data/songs');
+const exampleSongData = require("../data/songs");
 // Do not change the line above.
 
 /***********************************************************************/
@@ -17,7 +17,9 @@ const exampleSongData = require('../data/songs');
  * @returns {string[]} An array of strings, all of which are song titles.
  */
 
-function getSongTitles(exampleSongData) {}
+function getSongTitles(exampleSongData) {
+  return exampleSongData.reduce((acc, { title }) => [...acc, title], []);
+}
 
 /***********************************************************************/
 
@@ -32,7 +34,9 @@ function getSongTitles(exampleSongData) {}
  *  //> [ "Berlin Tsukin by Taiyo Ky", "Up by Sebastian Kamae", ... ]
  */
 
-function getSongDetails(exampleSongData) {}
+function getSongDetails(exampleSongData) {
+  return exampleSongData.reduce((acc, { title, artist }) => [...acc, `${title} by ${artist}`], []);
+}
 
 /***********************************************************************/
 
@@ -47,10 +51,12 @@ function getSongDetails(exampleSongData) {}
  *  //> [ { "Berlin Tsukin": "Taiyo Ky" }, { Up: "Sebastian Kamae" }, ... ]
  */
 
-function getTitleAndArtist(exampleSongData) {}
+function getTitleAndArtist(exampleSongData) {
+  return exampleSongData.reduce((acc, { title, artist }) => [...acc, {[title] : artist}], []);
+}
 
 module.exports = {
   getSongTitles,
   getSongDetails,
-  getTitleAndArtist
+  getTitleAndArtist,
 };
