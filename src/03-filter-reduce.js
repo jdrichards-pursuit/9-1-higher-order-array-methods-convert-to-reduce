@@ -5,7 +5,7 @@
 
   Keep in mind that your functions must still have and use a parameter for accepting all songs.
 */
-const exampleSongData = require('../data/songs');
+const exampleSongData = require("../data/songs");
 // Do not change the line above.
 
 /***********************************************************************/
@@ -17,7 +17,15 @@ const exampleSongData = require('../data/songs');
  * @returns {Object[]} An array of objects.
  * You must use .reduce
  */
-function getSongsBySaib(exampleSongData) {}
+function getSongsBySaib(exampleSongData) {
+  return exampleSongData.reduce((acc, song) => {
+    //console.log(acc, song)
+    if (song.artist === `Saib`) {
+      return [...acc, song];
+    }
+    return acc;
+  }, []);
+}
 
 /***********************************************************************/
 
@@ -29,7 +37,14 @@ function getSongsBySaib(exampleSongData) {}
  * You must use .reduce
  */
 
-function getSongsOverThreeMinutes(exampleSongData) {}
+function getSongsOverThreeMinutes(exampleSongData) {
+  return exampleSongData.reduce((acc, song) => {
+    if (song.runtimeInSeconds > 180) {
+      return [...acc, song];
+    }
+    return acc;
+  }, []);
+}
 
 /***********************************************************************/
 
@@ -41,10 +56,17 @@ function getSongsOverThreeMinutes(exampleSongData) {}
  * You must use .reduce
  */
 
-function getTitleTracks(exampleSongData) {}
+function getTitleTracks(exampleSongData) {
+  return exampleSongData.reduce((acc, song) => {
+    if (song.title === song.album) {
+      return [...acc, song];
+    }
+    return acc;
+  }, []);
+}
 
 module.exports = {
   getSongsBySaib,
   getSongsOverThreeMinutes,
-  getTitleTracks
+  getTitleTracks,
 };
