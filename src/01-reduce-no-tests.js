@@ -1,5 +1,6 @@
-const exampleSongData = require('../data/songs');
-const exampleVoteData = require('../data/votes');
+const songs = require("../data/songs");
+const exampleSongData = require("../data/songs");
+const exampleVoteData = require("../data/votes");
 
 // THERE ARE NO TESTS FOR THESE FILE EXERCISES
 // UNCOMMENT DESIGNATED LINES TO TEST
@@ -34,13 +35,18 @@ const exampleVoteData = require('../data/votes');
  * > 1680
  */
 
-function allSongsRuntimeSum(exampleSongData) {}
+function allSongsRuntimeSum(exampleSongData) {
+  return exampleSongData.reduce(
+    (acc, song) => (acc += song.runtimeInSeconds),
+    0
+  );
+}
 
 // UNCOMMENT THE CONSOLE.LOG LINE BELOW TO TEST
 // run `node src/01-reduce-no-tests.js`
 // look in terminal to see if you match the example
 // when you are done, comment line again
-// console.log(allSongsRuntimeSum(exampleSongData));
+console.log(allSongsRuntimeSum(exampleSongData));
 
 /***********************************************************************/
 
@@ -62,14 +68,23 @@ function allSongsRuntimeSum(exampleSongData) {}
   }
  */
 
-function getMaxRuntime(exampleSongData) {}
+function getMaxRuntime(exampleSongData) {
+  let obj = exampleSongData[0];
+  exampleSongData.reduce((acc, song) => {
+    if (acc < song.runtimeInSeconds) {
+      obj = song;
+      acc = song.runtimeInSeconds;
+    }
+    return acc;
+  }, 0);
+  return obj;
+}
 
 // UNCOMMENT  THE CONSOLE.LOG LINE BELOW TO TEST
 // run `node src/01-reduce-no-tests.js`
 // look in terminal to see if you match the example
 // when you are done, comment line again
-
-// console.log(getMaxRuntime(exampleSongData));
+console.log(getMaxRuntime(exampleSongData));
 
 /***********************************************************************/
 
@@ -92,11 +107,20 @@ function getMaxRuntime(exampleSongData) {}
 }
  */
 
-function countVotes(exampleVoteData) {}
+function countVotes(exampleVoteData) {
+  return exampleVoteData.reduce((acc, el) => {
+    if (acc[el.vote]) {
+      acc[el.vote] += 1;
+    } else {
+      acc[el.vote] = 1;
+    }
+    return acc;
+  }, {});
+}
 
 // UNCOMMENT THE CONSOLE.LOG LINE BELOW TO TEST
 // run `node src/01-reduce-no-tests.js`
 // look in terminal to see if you match the example
 // when you are done, comment line again
 
-// console.log(countVotes(exampleVoteData));
+console.log(countVotes(exampleVoteData));

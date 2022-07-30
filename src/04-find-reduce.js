@@ -5,7 +5,7 @@
 
   Keep in mind that your functions must still have and use a parameter for accepting all songs.
 */
-const exampleSongData = require('../data/songs');
+const exampleSongData = require("../data/songs");
 // Do not change the line above.
 
 /***********************************************************************/
@@ -16,7 +16,17 @@ const exampleSongData = require('../data/songs');
  * @param {Object[]} songs - An array of songs. See the song data for more.
  * @returns {Object} A single object.
  */
-function findPinkElephantsByTimestreet(exampleSongData) {}
+function findPinkElephantsByTimestreet(exampleSongData) {
+  return exampleSongData.reduce((acc, song) => {
+    if (acc.title === `Pink Elephants`) {
+      return acc;
+    }
+    if (song.title === `Pink Elephants`) {
+      acc = song;
+    }
+    return acc;
+  }, {});
+}
 
 /***********************************************************************/
 
@@ -26,7 +36,17 @@ function findPinkElephantsByTimestreet(exampleSongData) {}
  * @param {Object[]} songs - An array of songs. See the song data for more.
  * @returns {Object} A single object.
  */
-function findFirstSongUnderThreeMinutes(exampleSongData) {}
+function findFirstSongUnderThreeMinutes(exampleSongData) {
+  return exampleSongData.reduce((acc, song) => {
+    if (acc.runtimeInSeconds < 180) {
+      return acc;
+    }
+    if (song.runtimeInSeconds < 180) {
+      acc = song;
+    }
+    return acc;
+  }, {});
+}
 
 /***********************************************************************/
 
@@ -36,10 +56,20 @@ function findFirstSongUnderThreeMinutes(exampleSongData) {}
  * @param {Object[]} songs - An array of songs. See the song data for more.
  * @returns {Object} A single object.
  */
-function findFirstTitleTrack(exampleSongData) {}
+function findFirstTitleTrack(exampleSongData) {
+  return exampleSongData.reduce((acc, song) => {
+    if (acc.title === acc.album && acc.title !== undefined) {
+      return acc;
+    }
+    if (song.title === song.album) {
+      acc = song;
+    }
+    return acc;
+  }, {});
+}
 
 module.exports = {
   findPinkElephantsByTimestreet,
   findFirstSongUnderThreeMinutes,
-  findFirstTitleTrack
+  findFirstTitleTrack,
 };

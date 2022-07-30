@@ -5,7 +5,7 @@
 
   Keep in mind that your functions must still have and use a parameter for accepting all songs.
 */
-const exampleSongData = require('../data/songs');
+const exampleSongData = require("../data/songs");
 // Do not change the line above.
 
 /***********************************************************************/
@@ -16,7 +16,14 @@ const exampleSongData = require('../data/songs');
  * @param {Object[]} songs - An array of songs. See the song data for more.
  * @returns {boolean}
  */
-function allSongsAreOverTwoMinutes(exampleSongData) {}
+function allSongsAreOverTwoMinutes(exampleSongData) {
+  return exampleSongData.reduce((acc, { runtimeInSeconds }) => {
+    if (runtimeInSeconds <= 120) {
+      acc = false;
+    }
+    return acc;
+  }, true);
+}
 
 /***********************************************************************/
 
@@ -26,7 +33,14 @@ function allSongsAreOverTwoMinutes(exampleSongData) {}
  * @param {Object[]} songs - An array of songs. See the song data for more.
  * @returns {boolean}
  */
-function anySongIsOverFourMinutes(exampleSongData) {}
+function anySongIsOverFourMinutes(exampleSongData) {
+  return exampleSongData.reduce((acc, { runtimeInSeconds }) => {
+    if (runtimeInSeconds > 240) {
+      acc = true;
+    }
+    return acc;
+  }, false);
+}
 
 /***********************************************************************/
 
@@ -37,10 +51,17 @@ function anySongIsOverFourMinutes(exampleSongData) {}
  * @returns {boolean} boolean true if there is a song in the array by the artist "Peanut".
  * Otherwise returning false
  */
-function anySongIsByPeanut(exampleSongData) {}
+function anySongIsByPeanut(exampleSongData) {
+  return exampleSongData.reduce((acc, { artist }) => {
+    if (artist === `Peanut`) {
+      acc = true;
+    }
+    return acc;
+  }, false);
+}
 
 module.exports = {
   allSongsAreOverTwoMinutes,
   anySongIsOverFourMinutes,
-  anySongIsByPeanut
+  anySongIsByPeanut,
 };
