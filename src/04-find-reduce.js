@@ -16,7 +16,15 @@ const exampleSongData = require('../data/songs');
  * @param {Object[]} songs - An array of songs. See the song data for more.
  * @returns {Object} A single object.
  */
-function findPinkElephantsByTimestreet(exampleSongData) {}
+function findPinkElephantsByTimestreet(exampleSongData) {
+  return exampleSongData.reduce((pv,cv)=>{
+    if(cv.title==="Pink Elephants")
+    {
+      pv=cv;
+    }
+    return pv;
+  },{})
+}
 
 /***********************************************************************/
 
@@ -26,7 +34,15 @@ function findPinkElephantsByTimestreet(exampleSongData) {}
  * @param {Object[]} songs - An array of songs. See the song data for more.
  * @returns {Object} A single object.
  */
-function findFirstSongUnderThreeMinutes(exampleSongData) {}
+function findFirstSongUnderThreeMinutes(exampleSongData) {
+  return exampleSongData.reduce((pv,cv)=>{
+    if(cv.runtimeInSeconds<180&&Object.keys(pv).length===0)
+    {
+      pv=cv;
+    }
+    return pv;
+  },{})
+}
 
 /***********************************************************************/
 
@@ -36,7 +52,15 @@ function findFirstSongUnderThreeMinutes(exampleSongData) {}
  * @param {Object[]} songs - An array of songs. See the song data for more.
  * @returns {Object} A single object.
  */
-function findFirstTitleTrack(exampleSongData) {}
+function findFirstTitleTrack(exampleSongData) {
+  return exampleSongData.reduce((pv,cv)=>{
+    if(cv.album===cv.title&&Object.keys(pv).length===0)
+    {
+      pv=cv;
+    }
+    return pv;
+  },{})
+}
 
 module.exports = {
   findPinkElephantsByTimestreet,
