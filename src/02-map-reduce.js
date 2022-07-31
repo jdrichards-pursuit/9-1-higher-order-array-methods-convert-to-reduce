@@ -17,7 +17,9 @@ const exampleSongData = require('../data/songs');
  * @returns {string[]} An array of strings, all of which are song titles.
  */
 
-function getSongTitles(exampleSongData) {}
+function getSongTitles(exampleSongData) {
+  return exampleSongData.reduce((pv,cv)=>pv.concat([cv.title]),[]);
+}
 
 /***********************************************************************/
 
@@ -32,7 +34,9 @@ function getSongTitles(exampleSongData) {}
  *  //> [ "Berlin Tsukin by Taiyo Ky", "Up by Sebastian Kamae", ... ]
  */
 
-function getSongDetails(exampleSongData) {}
+function getSongDetails(exampleSongData) {
+  return exampleSongData.reduce((pv,cv)=>pv.concat([`${cv.title} by ${cv.artist}`]),[]);
+}
 
 /***********************************************************************/
 
@@ -47,7 +51,9 @@ function getSongDetails(exampleSongData) {}
  *  //> [ { "Berlin Tsukin": "Taiyo Ky" }, { Up: "Sebastian Kamae" }, ... ]
  */
 
-function getTitleAndArtist(exampleSongData) {}
+function getTitleAndArtist(exampleSongData) {
+  return exampleSongData.reduce((pv,cv)=>pv.concat({[cv.title]:cv.artist}),[])
+}
 
 module.exports = {
   getSongTitles,

@@ -17,7 +17,9 @@ const exampleSongData = require('../data/songs');
  * @returns {Object[]} An array of objects.
  * You must use .reduce
  */
-function getSongsBySaib(exampleSongData) {}
+function getSongsBySaib(exampleSongData) {
+  return exampleSongData.reduce((pv,cv)=> pv.concat(cv.artist==="Saib" ? cv: []),[])
+}
 
 /***********************************************************************/
 
@@ -29,7 +31,15 @@ function getSongsBySaib(exampleSongData) {}
  * You must use .reduce
  */
 
-function getSongsOverThreeMinutes(exampleSongData) {}
+function getSongsOverThreeMinutes(exampleSongData) {
+  return exampleSongData.reduce((pv,cv)=>{
+    if(cv.runtimeInSeconds>180)
+    {
+      pv.push(cv)
+    }
+    return pv;
+  },[]);
+}
 
 /***********************************************************************/
 
@@ -41,7 +51,15 @@ function getSongsOverThreeMinutes(exampleSongData) {}
  * You must use .reduce
  */
 
-function getTitleTracks(exampleSongData) {}
+function getTitleTracks(exampleSongData) {
+  return exampleSongData.reduce((pv,cv)=>{
+    if(cv['title']===cv['album'])
+    {
+      pv.push(cv);
+    }
+    return pv;
+  },[]);
+}
 
 module.exports = {
   getSongsBySaib,
